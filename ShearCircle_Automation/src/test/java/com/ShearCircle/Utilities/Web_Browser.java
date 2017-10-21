@@ -6,9 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -61,7 +63,8 @@ public class Web_Browser extends StaticVariables {
 	}
 public void scrollintoviewelement(WebElement element) {
 	try {
-		//((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", element);
 		Thread.sleep(500);
 	}catch(Exception e) {
 		System.out.println("Error description: " + e.getStackTrace());
@@ -122,7 +125,7 @@ public void scrollintoviewelement(WebElement element) {
 
 	}
 
-	public String elementgettext(WebElement element) {
+	public String getelementtext(WebElement element) {
 		String textvalue = "";
 		try {
 			if (element.isDisplayed()) {
@@ -179,7 +182,7 @@ public void scrollintoviewelement(WebElement element) {
 
 	}
 
-	public void select_Dropdownvalue(WebElement element, String p_in_inputvalue) {
+	public void selectByVisibleText(WebElement element, String p_in_inputvalue) {
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
 				Select dropdown = new Select(element);
@@ -192,7 +195,48 @@ public void scrollintoviewelement(WebElement element) {
 		}
 
 	}
+	
+	public void selectByIndex(WebElement element, int p_in_inputvalue) {
+		try {
+			if (element.isDisplayed() && element.isEnabled()) {
+				Select dropdown = new Select(element);
+				dropdown.selectByIndex(p_in_inputvalue);
+			} else {
+				System.out.println("Element existance and enabled status Failed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
 
+	}
+
+	public void selectByValue(WebElement element, String p_in_inputvalue) {
+		try {
+			if (element.isDisplayed() && element.isEnabled()) {
+				Select dropdown = new Select(element);
+				dropdown.selectByValue(p_in_inputvalue);
+			} else {
+				System.out.println("Element existance and enabled status Failed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+
+	}
+	
+	public void getOptions(WebElement element) {
+		try {
+			if (element.isDisplayed() && element.isEnabled()) {
+				Select dropdown = new Select(element);
+				List<WebElement> elementCount = dropdown.getOptions();
+			} else {
+				System.out.println("Element existance and enabled status Failed");
+			}
+		} catch (Exception e) {
+			System.out.println("Error in description: " + e.getStackTrace());
+		}
+
+	}
 	/******************** Log Report ***************************************/
 
 	public void reportscomtep(String status, String Description, String Expectedvalue, String Actualvalue) {

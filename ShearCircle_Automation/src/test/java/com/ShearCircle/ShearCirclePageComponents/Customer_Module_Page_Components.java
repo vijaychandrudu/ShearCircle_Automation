@@ -145,14 +145,14 @@ public class Customer_Module_Page_Components extends StaticVariables {
 								browser.click(Login.ResetPassword_SendInstruction_Link);
 								
 								if(p_in_Valid_or_Invalid.equalsIgnoreCase("Valid")) {
-									getmessage = browser.elementgettext(Login.ResetPassword_ValidMessage_text);
+									getmessage = browser.getelementtext(Login.ResetPassword_ValidMessage_text);
 									if(valid_Message.equalsIgnoreCase(getmessage)) {
 										browser.reportscomtep("Passed", p_in_FinalAction+" and Verify Reset Password Successful message is displayed"  , "Reset Password Successful message should be displayed", "Reset Password Successful message displayed as : "+ getmessage);
 									}else {
 										browser.reportscomtep("Failed", p_in_FinalAction+ " and Verify Reset Password Successful message is displayed"  , "Reset Password Successful message should be displayed", "Reset Password Successful message Not displayed as :"+valid_Message);
 									}								
 								}else if(p_in_Valid_or_Invalid.equalsIgnoreCase("InValid")){
-									getmessage = browser.elementgettext(Login.ResetPassword_InvalidMessage_text);
+									getmessage = browser.getelementtext(Login.ResetPassword_InvalidMessage_text);
 									if(invalid_Message.equalsIgnoreCase(getmessage)) {
 										browser.reportscomtep("Passed", p_in_FinalAction+" and Verify Reset Password invalid message is displayed"  , "Reset Password invalid message should be displayed", "Reset Password invalid message displayed as : "+ getmessage);
 									}else {
