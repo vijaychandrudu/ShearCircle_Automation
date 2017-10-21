@@ -68,8 +68,7 @@ public void scrollintoviewelement(WebElement element) {
 		Thread.sleep(500);
 	}catch(Exception e) {
 		System.out.println("Error description: " + e.getStackTrace());
-	}
-	
+	}	
 	
 }
 	public boolean elmentisdisplayed(WebElement element) {
@@ -88,8 +87,7 @@ public void scrollintoviewelement(WebElement element) {
 
 	}
 
-	public void Verify_elmentisdisplayed_Report(WebElement element, String Reporttext) {
-
+	public void Verify_elmentisdisplayed_Report(WebElement element, String Reporttext){
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
 				this.reportscomtep("Passed", "Verify The Element is " + Reporttext + "displayed",
@@ -122,8 +120,9 @@ public void scrollintoviewelement(WebElement element) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
 		return attributevalue;
-
 	}
+	
+	
 
 	public String getelementtext(WebElement element) {
 		String textvalue = "";
@@ -134,11 +133,10 @@ public void scrollintoviewelement(WebElement element) {
 				System.out.println("Element existance and enabled status Failed");
 			}
 
-		} catch (Exception e) {
+		} catch (Exception e){
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
 		return textvalue;
-
 	}
 
 	public void sendkeys(WebElement element, String p_in_inputvalue) {
@@ -221,22 +219,23 @@ public void scrollintoviewelement(WebElement element) {
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
-
 	}
 	
-	public void getOptions(WebElement element) {
+	public List<WebElement> getOptions(WebElement element) {
+		List<WebElement> elementCount = null;
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
 				Select dropdown = new Select(element);
-				List<WebElement> elementCount = dropdown.getOptions();
+				elementCount = dropdown.getOptions();
 			} else {
 				System.out.println("Element existance and enabled status Failed");
 			}
 		} catch (Exception e) {
 			System.out.println("Error in description: " + e.getStackTrace());
 		}
-
+		return elementCount;
 	}
+	
 	/******************** Log Report ***************************************/
 
 	public void reportscomtep(String status, String Description, String Expectedvalue, String Actualvalue) {
