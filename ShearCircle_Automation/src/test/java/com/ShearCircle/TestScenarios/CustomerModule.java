@@ -39,7 +39,7 @@ public class CustomerModule extends StaticVariables {
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("CustomerTestData.properties");
 		Browser = browser;
-		cfn.GetAndOpenBrowser(browser);
+		cfn.getAndOpenBrowser(browser);
 	}
 
 	@AfterMethod

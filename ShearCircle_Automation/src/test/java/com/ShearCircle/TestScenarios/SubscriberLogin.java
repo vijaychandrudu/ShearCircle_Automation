@@ -53,7 +53,7 @@ public class SubscriberLogin extends StaticVariables {
 	public void beforeclass(@Optional("chrome") String browser) throws IOException, InterruptedException {
 		TestDataPath = cfn.TestDataPathOf("SubscriberTestData.properties");
 		Browser = browser;
-		cfn.GetAndOpenBrowser(browser);
+		cfn.getAndOpenBrowser(browser);
 
 	}
 
@@ -70,7 +70,7 @@ public class SubscriberLogin extends StaticVariables {
 
 	@Test
 	public void LoginAsSubscriber() {
-
+/*
 		cfn.TypeURL(p("TestBedURL"));
 		//driver.findElement(By.linkText("Login")).click();
 		cfn.ClickByXpath(obj.LOGIN);
@@ -78,7 +78,7 @@ public class SubscriberLogin extends StaticVariables {
 		cfn.TypebyId(obj.USERNAME, p("UserName"));
 		cfn.TypebyId(obj.PASSWORD, p("Password"));
 		cfn.ClickByXpath(obj.SIGN);
-		
+		*/
 
 	}
 

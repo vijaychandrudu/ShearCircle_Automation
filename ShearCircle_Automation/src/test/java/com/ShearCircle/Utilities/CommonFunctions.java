@@ -86,6 +86,7 @@ public class CommonFunctions extends StaticVariables {
 			}
 		} catch (WebDriverException e) {
 			System.out.println(e.getMessage());
+			Reporter.log(e.getMessage());
 		}
 		// to delete all cookies
 		driver.manage().deleteAllCookies();
@@ -175,6 +176,7 @@ public class CommonFunctions extends StaticVariables {
 		try {
 			FileUtils.copyFile(scrFile, new File(ScreenshotsPath + Name + timeStampasString() + ".png"));
 			System.out.println("***Placed screen shot in " + ScreenshotsPath + " ***");
+			Reporter.log("***Placed screen shot in " + ScreenshotsPath + " ***");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -302,11 +304,20 @@ public class CommonFunctions extends StaticVariables {
 
 	/******** Assertion using TestNG ******************/
 
-	public void assertionByusingXpath(WebElement element, String Inputdata) {
+	public void assertionByusingWebElement(WebElement element, String Inputdata) {
+		try {
 		String ActualMsg = element.getText();
 		String ExpectedMsg = Inputdata;
 		Assert.assertEquals(ExpectedMsg, ActualMsg);
 		System.out.println("************Assertion Done**********");
+		} catch (StaleElementReferenceException e) {
+			System.out.println(
+					"Element - " + element + " is not attached to the page document " + e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element " + element + " was not found in DOM" + e.getStackTrace());
+		} catch (Exception e) {
+			System.out.println("Unable to find element " + e.getStackTrace());
+		}
 	}
 
 	public void assertEquals(String receivedMessage, String expectedMessage) throws Exception {
@@ -323,8 +334,13 @@ public class CommonFunctions extends StaticVariables {
 				System.out.println("Element existance and enabled status Failed");
 				Reporter.log("Element existance and enabled status Failed");
 			}
+		} catch (StaleElementReferenceException e) {
+			System.out.println(
+					"Element - " + element + " is not attached to the page document " + e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element " + element + " was not found in DOM" + e.getStackTrace());
 		} catch (Exception e) {
-			System.out.println("Error in description: " + e.getStackTrace());
+			System.out.println("Error description: " + e.getStackTrace());
 
 		}
 	}
@@ -338,9 +354,19 @@ public class CommonFunctions extends StaticVariables {
 	/****************** ScrollToElementBottom *****************************/
 
 	public void ScrollToElementBottom(WebElement element) {
+		try {
 		System.out.println("***ScrollToElementBottom:  ***");
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(false);", element);
 		((JavascriptExecutor) driver).executeScript("arguments[0].style.border='6px groove green'", element);
+		} catch (StaleElementReferenceException e) {
+			System.out.println(
+					"Element - " + element + " is not attached to the page document " + e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element " + element + " was not found in DOM" + e.getStackTrace());
+		} catch (Exception e) {
+			System.out.println("Error description: " + e.getStackTrace());
+
+		}
 	}
 
 	public void scrollintoviewelement(WebElement element) {
@@ -348,6 +374,11 @@ public class CommonFunctions extends StaticVariables {
 			// JavascriptExecutor js = (JavascriptExecutor) driver;
 			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 			Thread.sleep(500);
+		} catch (StaleElementReferenceException e) {
+			System.out.println(
+					"Element - " + element + " is not attached to the page document " + e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element " + element + " was not found in DOM" + e.getStackTrace());
 		} catch (Exception e) {
 			System.out.println("Error description: " + e.getStackTrace());
 		}
@@ -379,7 +410,14 @@ public class CommonFunctions extends StaticVariables {
 	}
 
 	public String getdata(String key) {
-		String keyvlaue = prop.getProperty(key);
+		String keyvlaue = null;
+		try {
+			
+			keyvlaue = prop.getProperty(key);
+		
+		}catch(Exception e){
+			System.out.println("Error description: " + e.getStackTrace());
+		}
 		return keyvlaue;
 
 	}
@@ -426,7 +464,7 @@ public class CommonFunctions extends StaticVariables {
 		}
 
 	}
-
+/*******************Get webElement attribute value****************/
 	public String elementgetAttributevalue(WebElement element, String p_in_attributename) {
 		String attributevalue = "";
 		try {
@@ -441,7 +479,7 @@ public class CommonFunctions extends StaticVariables {
 		}
 		return attributevalue;
 	}
-
+/**********************Get the webelement text************************/
 	public String getelementtext(WebElement element) {
 		String textvalue = "";
 		try {
@@ -457,6 +495,7 @@ public class CommonFunctions extends StaticVariables {
 		return textvalue;
 	}
 
+	
 	public void sendkeys(WebElement element, String p_in_inputvalue) {
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
@@ -470,7 +509,12 @@ public class CommonFunctions extends StaticVariables {
 		}
 
 	}
-
+/*
+ *Created date:21/10/2017
+ *Description:
+ *Parameters:
+ *ReturnType:
+ */
 	public void check_Checkbox(WebElement element) {
 		try {
 			if (element.isDisplayed() && element.isEnabled()) {
