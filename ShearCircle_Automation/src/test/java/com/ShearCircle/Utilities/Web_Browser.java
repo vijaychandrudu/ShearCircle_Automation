@@ -61,6 +61,7 @@ public class Web_Browser extends StaticVariables {
 		return TestDataPath;
 
 	}
+	
 public void scrollintoviewelement(WebElement element) {
 	try {
 		//JavascriptExecutor js = (JavascriptExecutor) driver;
