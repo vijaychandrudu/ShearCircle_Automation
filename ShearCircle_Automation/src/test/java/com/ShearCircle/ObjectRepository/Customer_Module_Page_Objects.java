@@ -5,76 +5,61 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Customer_Module_Page_Objects{
-
-	/*public String LOGIN = ".//*[@id='navbar-collapse-1']/span/a[1]";
-	public String USERNAME = "username";
-	public String PASSWORD = "password";
-	public String SIGN = ".//*[@id='login_form']/div[3]/div/center/button";	
-	*/
 					
 	@FindBy(xpath="//div/h1/b[text()='Customer?']//parent::h1/following-sibling::a[text()='Join Our Circle']")	
-    public WebElement CR_customerJoinCircle_Link;	
+    public WebElement customerJoinCircle_Link;	
 	
 	@FindBy(xpath="//div/h1/b[text()='Professional?']//parent::h1/following-sibling::a[text()='Join Our Circle']")	
-    public WebElement CR_ProfessionalJoinCircle_Link;	
+    public WebElement ProfessionalJoinCircle_Link;	
 	
 	@FindBy(xpath="//div/h2/b[text()='Join Now']")	
-    public WebElement CR_JoinNow_Header;	
+    public WebElement CustomerReg_JoinNow_Header;
+	
+	@FindBy(xpath="//*[@id=\"position\"]/div/ul/li[text()='Customer']")	
+    public WebElement CustomerReg_Joincircle_navigation;
+	
+	@FindBy(xpath="//*[@id='position']/div/ul/li[text()='Professional']")	
+    public WebElement SubscriberReg_Joincircle_navigation;	
 	
 	@FindBy(xpath="//*[@name='firstname']")	
-    public WebElement CR_FirstName_textbox;	
+    public WebElement CustomerReg_FirstName_textbox;	
 	@FindBy(xpath="//input[@name='lastname']")
-	public WebElement CR_LastName_textbox;	
+	public WebElement CustomerReg_LastName_textbox;	
 	@FindBy(xpath="//input[@name='username']")
-	public WebElement CR_Email_textbox;
+	public WebElement CustomerReg_Email_textbox;
 	@FindBy(xpath="//*[@id='password']")
-	public WebElement CR_Password_textbox;
+	public WebElement CustomerReg_Password_textbox;
 	@FindBy(xpath="//input[@name='cnf_password']")
-	public WebElement CR_ReEnterPassword_textbox;
+	public WebElement CustomerReg_ReEnterPassword_textbox;
 	@FindBy(xpath="//input[@name='has_agreed']")
-	public WebElement CR_Termsofservice_checkbox;
+	public WebElement CustomerReg_Termsofservice_checkbox;
 	@FindBy(xpath="//input[@name='accepted_billing_agreement']")
-	public WebElement CR_billingagrement_checkbox;
+	public WebElement CustomerReg_billingagrement_checkbox;
 	@FindBy(xpath="//*[@id='register_form']/div/button")
-	public WebElement CR_joinourcircle_button;
+	public WebElement CustomerReg_joinourcircle_button;
 	@FindBy(xpath="//div/h5/a/u['Sign in']")
-	public WebElement CR_signin_button;
+	public WebElement CustomerReg_signin_button;
 	
-	
-	
-	@FindBy(xpath="//*[@id='firstname']")
-    public WebElement PF_FirstName_textbox;
-	
-	@FindBy(xpath="//input[@name='lastname']")
-	public WebElement PF_LastName_textbox;
-	
-	@FindBy(xpath="//input[@name='username']")
-	public WebElement PF_Email_textbox;
-	
-	@FindBy(xpath="//input[@name='business_name']")
-	public WebElement PF_businessName_textbox;
-	
-	@FindBy(xpath="//input[@name='subdomain']")
-	public WebElement PF_Subdomain_textbox;
-	
-	@FindBy(xpath="//*[@id='password']")
-	public WebElement PF_Password_textbox;
-	
-	@FindBy(xpath="//input[@name='cnf_password']")
-	public WebElement PF_ReEnterPassword_textbox;
-	
-	@FindBy(xpath="//input[@name='has_agreed']")
-	public WebElement PF_Termsofservice_checkbox;
-	
-	@FindBy(xpath="//input[@name='accepted_billing_agreement']")
-	public WebElement PF_billingagrement_checkbox;
-	
-	@FindBy(xpath="//*[@id='register_form']/div/button[contains(text(),'free trial')]")
-	public WebElement PF_joinourcircle_button;
-	
-	@FindBy(xpath="//input[@name='business_name']")
-	public WebElement PF_signin_button;
 			
+	@FindBy(xpath="//*[@id='register_form']/div/em[@for='firstname']")
+	public WebElement CustomerReg_invalidFirstname_errorMessage;	
 	
+	@FindBy(xpath="//*[@id='register_form']/div/em[@for='lastname']")
+	public WebElement CustomerReg_invalidLastname_errorMessage;	
+		
+	@FindBy(xpath="//*[@id='register_form']/div/em[text()='The entered email is already registered.']")
+	public WebElement CustomerReg_invalidEmail_errorMessage;
+	
+	@FindBy(xpath="//*[@id='register_form']/div/em[@for='password']")
+	public WebElement CustomerReg_invalidPassword_errorMessage;
+	
+	@FindBy(xpath="//*[@id='register_form']/div/em[@for='cnf_password']")
+	public WebElement CustomerReg_invalidRePassword_errorMessage;
+	
+	@FindBy(xpath="//*[@id='register_form']/div//em[@for='has_agreed']")
+	public WebElement CustomerReg_AcceptTermsandConditons_errorMessage;
+	
+	@FindBy(xpath="//*[@id='register_form']/div//em[@for='accepted_billing_agreement']")
+	public WebElement CustomerReg_AcceptourbillingAgreement_errorMessage;		
 
 }
