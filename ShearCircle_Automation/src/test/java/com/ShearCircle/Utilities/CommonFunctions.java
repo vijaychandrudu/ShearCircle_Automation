@@ -665,6 +665,7 @@ public class CommonFunctions extends StaticVariables {
 	public boolean elmentisdisplayed(WebElement element) {
 		boolean elementdisplayedflag = false;
 		try {
+			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
 				elementdisplayedflag = true;
 			} else {
@@ -685,6 +686,7 @@ public class CommonFunctions extends StaticVariables {
 
 	public void Verify_elmentisdisplayed_Report(WebElement element, String Reporttext) {
 		try {
+			this.waitforelementtobevisible(element, 10);
 			if (element.isDisplayed() && element.isEnabled()) {
 				this.reportscomtep("Passed", "Verify The Element is " + Reporttext + "displayed",
 						"The Element " + Reporttext + "should be displayed", "The Element " + Reporttext + "displayed");
@@ -709,7 +711,8 @@ public class CommonFunctions extends StaticVariables {
 	public String elementgetAttributevalue(WebElement element, String p_in_attributename) {
 		String attributevalue = "";
 		try {
-			if (element.isDisplayed()) {
+			this.waitforelementtobevisible(element, 10);
+			if (element.isDisplayed()) {				
 				attributevalue = element.getAttribute(p_in_attributename);
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -728,7 +731,8 @@ public class CommonFunctions extends StaticVariables {
 	public String getelementtext(WebElement element) {
 		String textvalue = "";
 		try {
-			if (element.isDisplayed()) {
+			this.waitforelementtobevisible(element, 10);
+			if (element.isDisplayed()) {				
 				textvalue = element.getText();
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -747,7 +751,8 @@ public class CommonFunctions extends StaticVariables {
 
 	public void sendkeys(WebElement element, String p_in_inputvalue) {
 		try {
-			if (element.isDisplayed() && element.isEnabled()) {
+			this.waitforelementtobevisible(element, 10);
+			if (element.isDisplayed() && element.isEnabled()) {				
 				element.sendKeys(p_in_inputvalue);
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -766,10 +771,12 @@ public class CommonFunctions extends StaticVariables {
 
 	public void check_Checkbox(WebElement element) {
 		try {
+			this.explicitWaitUsingElementToBeClickable(element);
+			//this.scrollintoviewelement(element);
 			if (element.isDisplayed() && element.isEnabled()) {
 				if (element.isSelected()) {
 					System.out.println("Check box already selected");
-				} else {
+				} else {					
 					element.click();
 				}
 
@@ -788,8 +795,10 @@ public class CommonFunctions extends StaticVariables {
 
 	public void click(WebElement element) {
 		try {
-			if (element.isDisplayed() && element.isEnabled()) {
-				element.click();
+			//this.scrollintoviewelement(element);
+			this.explicitWaitUsingElementToBeClickable(element);			
+			if (element.isDisplayed() && element.isEnabled()) {				
+				element.click();		
 
 			} else {
 				System.out.println("Element existance and enabled status Failed");
@@ -986,6 +995,7 @@ public class CommonFunctions extends StaticVariables {
 		case "passed":
 		case "PASSED":
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
+			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			try {
 				FileUtils.copyFile(scrFile, new File(ScreenshotsPath + "Pass_" + TimeStampasString() + ".jpg"));
 			} catch (IOException e) {
@@ -999,6 +1009,7 @@ public class CommonFunctions extends StaticVariables {
 		case "failed":
 		case "FAILED":
 			System.out.println(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
+			Reporter.log(status + ", " + Description + ", " + Expectedvalue + ", " + Actualvalue);
 			try {
 				FileUtils.copyFile(scrFile, new File(ScreenshotsPath + "Pass_" + TimeStampasString() + ".jpg"));
 			} catch (IOException e) {

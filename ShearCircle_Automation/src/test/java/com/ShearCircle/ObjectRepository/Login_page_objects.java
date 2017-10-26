@@ -13,6 +13,12 @@ public class Login_page_objects {
 	@FindBy(xpath="//*[@id='navbar-collapse-1']/span/a[contains(text(),'Circle')]")
     public WebElement Home_JoinOurCircle_Link;
 	
+	@FindBy(xpath="//*[@id='sub_content']/h1")
+    public WebElement Login_Page_Header;	
+	
+	@FindBy(xpath="//*[@id='sub_content']/h1")
+    public WebElement Joinourcircle_Page_Header;	
+	
 	@FindBy(xpath="//*[@id='username']")
     public WebElement Login_UserName_textbox;
 	@FindBy(xpath="//*[@id='password']")

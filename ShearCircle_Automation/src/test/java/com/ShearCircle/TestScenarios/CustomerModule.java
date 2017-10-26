@@ -51,27 +51,31 @@ public class CustomerModule extends StaticVariables {
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
-	}
-
-	/*@Test
-	public void CustomerSubscriber() throws IOException {			
-		CR.launchbowser_application();
-		CR.Customer_Registration();		
-	}
+	}	
 	
-		
-	@Test
-	public void ProfessionalSubscriber() throws IOException {
-		//Customer_Module_Page_Components CR = new Customer_Module_Page_Components();			
-		CR.Professional_Registration();
-	}*/
 
-	@Test
+	@Test(priority=0)
 	public void Customer_ForgotPassword_scenario() throws IOException {
 		CR = new Customer_Module_Page_Components();	
-		CR.launchbowser_application();
+		CR.ShearCircle_Launchbowser_Application();
 		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Send instructions to reset password");
 		CR.ShearCircle_Verify_Customer_forgotPassword("Valid", "Click Cancel");
+		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Send instructions to reset password");
+		CR.ShearCircle_Verify_Customer_forgotPassword("InValid", "Click Cancel");
 	}
+	
+	
+	@Test(priority=1)
+	public void Customer_clicks_JoinOurCircle() throws IOException {
+		CR = new Customer_Module_Page_Components();	
+		CR.ShearCircle_Launchbowser_Application();
+		CR.ShearCircle_Click_Login_OR_JoinOurCircle("Click_JoinOurCircle");
+		CR.ShearCircle_Click_Customer_OR_Professional_JoinOurCircle("Click_CustomerJoinCircle");
+		CR.ShearCircle_Verify_Customer_Registrationform_Fieldvalidation();
+		CR.ShearCircle_Customer_Registrationwithvaliddata();
+	}
+	
+	
+	
 
 }

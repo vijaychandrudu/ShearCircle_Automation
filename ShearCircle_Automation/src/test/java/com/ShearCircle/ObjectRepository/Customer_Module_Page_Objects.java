@@ -40,6 +40,15 @@ public class Customer_Module_Page_Objects{
 	@FindBy(xpath="//div/h5/a/u['Sign in']")
 	public WebElement CustomerReg_signin_button;
 	
+	@FindBy(xpath="//div/h2[text()='Congratulations..!']")
+	public WebElement CustomerReg_Success_Message;
+	
+	@FindBy(xpath="//div/p[contains(text(),'Registration successful')]")
+	public WebElement CustomerReg_Success_Message1;
+	
+	@FindBy(xpath="//div/div/button[@class='confirm']")
+	public WebElement CustomerReg_Confirmation_OK_Button;
+	
 			
 	@FindBy(xpath="//*[@id='register_form']/div/em[@for='firstname']")
 	public WebElement CustomerReg_invalidFirstname_errorMessage;	
